@@ -1,6 +1,4 @@
-// models.user_test.go
-
-package main
+package models
 
 import "testing"
 

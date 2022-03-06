@@ -1,13 +1,11 @@
-// models.user.go
-
-package main
+package models
 
 import (
 	"errors"
 	"strings"
 )
 
-type user struct {
+type User struct {
 	Username string `json:"username"`
 	Password string `json:"-"`
 }
@@ -18,14 +16,14 @@ type user struct {
 // from a database. Moreover, in production settings, you should
 // store passwords securely by salting and hashing them instead
 // of using them as we're doing in this demo
-var userList = []user{
-	user{Username: "user1", Password: "pass1"},
-	user{Username: "user2", Password: "pass2"},
-	user{Username: "user3", Password: "pass3"},
+var userList = []User{
+	{Username: "user1", Password: "pass1"},
+	{Username: "user2", Password: "pass2"},
+	{Username: "user3", Password: "pass3"},
 }
 
 // Check if the username and password combination is valid
-func isUserValid(username, password string) bool {
+func IsUserValid(username, password string) bool {
 	for _, u := range userList {
 		if u.Username == username && u.Password == password {
 			return true
@@ -36,14 +34,14 @@ func isUserValid(username, password string) bool {
 
 // Register a new user with the given username and password
 // NOTE: For this demo, we
-func registerNewUser(username, password string) (*user, error) {
+func RegisterNewUser(username, password string) (*User, error) {
 	if strings.TrimSpace(password) == "" {
-		return nil, errors.New("The password can't be empty")
+		return nil, errors.New("the password can't be empty")
 	} else if !isUsernameAvailable(username) {
-		return nil, errors.New("The username isn't available")
+		return nil, errors.New("the username isn't available")
 	}
 
-	u := user{Username: username, Password: password}
+	u := User{Username: username, Password: password}
 
 	userList = append(userList, u)
 

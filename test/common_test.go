@@ -4,13 +4,15 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"simple-blog/middleware"
+	"simple-blog/models"
 	"testing"
 
 	"github.com/gin-gonic/gin"
 )
 
-var tmpUserList []user
-var tmpArticleList []article
+var tmpUserList []models.User
+var tmpArticleList []models.Article
 
 // This function is used to do setup before executing the test functions
 func TestMain(m *testing.M) {
@@ -26,7 +28,7 @@ func getRouter(withTemplates bool) *gin.Engine {
 	r := gin.Default()
 	if withTemplates {
 		r.LoadHTMLGlob("templates/*")
-		r.Use(setUserStatus())
+		r.Use(middleware.SetUserStatus())
 	}
 	return r
 }

@@ -1,6 +1,4 @@
-// middleware.auth_test.go
-
-package main
+package middleware
 
 import (
 	"net/http"

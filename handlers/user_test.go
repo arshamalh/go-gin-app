@@ -1,6 +1,4 @@
-// handlers.user_test.go
-
-package main
+package handlers
 
 import (
 	"io/ioutil"

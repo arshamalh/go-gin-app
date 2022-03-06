@@ -1,6 +1,4 @@
-// handlers.article_test.go
-
-package main
+package handlers
 
 import (
 	"encoding/json"
